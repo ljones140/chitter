@@ -16,12 +16,12 @@ describe User do
   end
 
   it 'authenticated when given a valid username and password' do
-    authenticated_user = User.authenticate(user.user_name, user.password)
+    authenticated_user = User.authenticate({user_name: user.user_name, password: user.password})
     expect(authenticated_user).to eq(user)
   end
 
   it 'does not authenticate incorrect password' do
-    expect(User.authenticate(user.user_name, "incorrect_password")).to be_nil
+    expect(User.authenticate({user_name:user.user_name, password: "incorrect_password"})).to be_nil
   end
 
   it 'requires a username' do

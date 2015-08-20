@@ -10,9 +10,7 @@ module ChitterModule
       end
 
       post '/peep' do
-        Peep.create(body: params[:peep_body],
-                    user_id: session[:user_id],
-                    time: Time.now)
+        current_user.peeps.create(body: params[:peep_body], time: Time.now)
         redirect to('/peeps')
       end
 

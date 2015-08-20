@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/flash'
+require 'sinatra/partial'
 require './data_mapper_setup'
 require './app/helpers/apphelpers'
 require './app/controllers/base'

@@ -11,6 +11,9 @@ module ChitterModule
 
       use Rack::MethodOverride
       register Sinatra::Flash
+      register Sinatra::Partial
+      enable :partial_underscores
+      set :partial_template_engine, :erb
 
       set :views, proc { File.join(root, '../..','views') }
       set :public_folder, proc { File.join(root, '../..', 'public') }

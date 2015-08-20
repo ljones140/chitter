@@ -4,17 +4,14 @@ module ChitterModule
 
     class UserController < Base
 
+      PERMITTED_PARAMS = [:email, :name, :user_name, :password, :password_confirmation]
+
       get '/users/new' do
         erb :'users/new'
       end
 
       post '/users' do
-        @user = User.create(email: params[:email],
-                            name: params[:name],
-                            user_name: params[:user_name],
-                            password: params[:password],
-                            password_confirmation:
-                            params[:password_confirmation])
+        @user = create_user(params)
         if @user.save
           session[:user_id] = @user.id
           redirect to('/peeps')
@@ -29,7 +26,7 @@ module ChitterModule
       end
 
       post '/users/sign-in' do
-        user = User.authenticate(params[:user_name], params[:password])
+        user = User.authenticate(permitted_params(params))
         if user
           session[:user_id] = user.id
           redirect to('/peeps')
@@ -42,6 +39,15 @@ module ChitterModule
         session.clear
         flash.now[:notice] = ['goodbye!']
       end
+
+      def create_user(params)
+        User.new(permitted_params(params))
+      end
+
+      def permitted_params(parameters)
+        parameters.map{|key,value|[key.to_sym, value] if PERMITTED_PARAMS.include?(key.to_sym)}.to_h
+      end
+
 
     end
 
