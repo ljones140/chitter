@@ -71,7 +71,7 @@ feature 'User signs out' do
     user = create(:user)
     sign_in_as(user)
     click_button 'Sign out'
-    expect(page). to have_content('goodbye!')
+    expect(page). to have_content('you must be logged in to peep')
     expect(page).not_to have_content "logged in as: #{user.user_name}"
   end
 end

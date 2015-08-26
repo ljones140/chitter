@@ -37,7 +37,7 @@ module ChitterModule
 
       delete '/user-signout' do
         session.clear
-        flash.now[:notice] = ['goodbye!']
+        redirect to('/peeps')
       end
 
       def create_user(params)

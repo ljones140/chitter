@@ -20,16 +20,9 @@ feature 'creating peeps' do
     expect(page).not_to have_content('you must be logged in to peep')
     fill_in 'peep_body', with: 'this is a peep'
     click_button 'peep!'
-    within 'div#peeps' do
       expect(page). to have_content ('this is a peep')
-    end
-    within 'span.author' do
       expect(page). to have_content ("#{user.user_name}")
-      expect(page). to have_content ("#{user.name}")
-    end
-    within 'span.time' do
       expect(page).to have_content ("18:00 16/08/2015")
-    end
   end
 
   scenario 'view all peeps by time decending' do
@@ -44,9 +37,7 @@ feature 'creating peeps' do
     end
 
     visit '/peeps'
-    within 'div#peeps' do
-      peeps.each { |peep_post| expect(page).to have_content(peep_post.body) }
-    end
+    peeps.each { |peep_post| expect(page).to have_content(peep_post.body) }
     expect(peep_second.body).to appear_before(peep.body)
   end
 

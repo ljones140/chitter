@@ -2,13 +2,11 @@
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href="#">Chitter</a></h1>
-
-
+      <h1><a href="/">Chitter</a></h1>
 
     </li>
      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"></li>
+    <li class="toggle-topbar"></li>
 
   </ul>
 
@@ -17,27 +15,25 @@
     <!-- Right Nav Section -->
     <% unless current_user %>
     <ul class="right">
-      <li class="has-form"><a href="/users/sign-in" id="sign-in" >Sign in</a></li>
+      <li class="has-form"><a href="/users/sign-in" id="sign-in">Sign in</a></li>
       <li class="divider"></li>
-      <li class="has-form"><a href="/users/new" id="sign-up" >join</a></li>
+      <li class="has-form" ><a href="/users/new" id="sign-up">join</a></li>
     </ul>
     <% end %>
 
     <!-- Left Nav Section -->
     <% if current_user %>
     <ul class="left">
-      <li><a href="#">logged in as: <%= current_user.user_name %></a></li>
+      <li><a href="/">logged in as: <%= current_user.user_name %></a></li>
+      <li>
+        <form class="has-form" method="post" action="/user-signout">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Sign out" class="button">
+        </form>
+      </li>
+
     </ul>
     <% end %>
   </section>
 </nav>
-
-<div id="logo">Chitter&nbsp;</div>
-  <% if current_user %>
-  </header>
-    <form  method="post" action="/user-signout" >
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Sign out" class="button">
-    </form>
-  <% end %>
 </header>
