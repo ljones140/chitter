@@ -10,7 +10,7 @@ Application is written in ruby and runs on a Sinatra. Datamapper has been used f
 
 Sinatra has been set up in a modulare style with a module per controller inhereting from a Base class. The main sinatra server file app.rb requires and routes the controller modules.
 
-HTMl and CSS have been used on the front end.
+Foundation framework was used for the frontend interface and styling.
 
 
 Installation guidelines
